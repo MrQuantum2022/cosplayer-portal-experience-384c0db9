@@ -48,105 +48,44 @@ export const Door = ({ to, imageSrc, label, color, delay = 0 }: DoorProps) => {
       style={{ transitionDelay: `${delay}ms` }}
     >
       <div className="relative group">
-        {/* Suzume-inspired wooden door frame - outer frame */}
-        <div 
-          className="absolute -inset-6 rounded-2xl border-8 border-opacity-20 z-0 overflow-hidden"
+        {/* Suzume-inspired door frame */}
+        <div className="absolute -inset-6 rounded-2xl border-8 border-opacity-20 z-0"
           style={{ 
-            borderColor: `${color}60`,
+            borderColor: color,
+            background: `radial-gradient(circle at center, ${color}10 0%, transparent 70%)`,
             transform: 'rotate(-2deg)',
             boxShadow: `0 0 20px ${color}40`
           }}
-        >
-          {/* Wooden texture overlay */}
-          <div 
-            className="absolute inset-0" 
-            style={{ 
-              backgroundImage: `url('https://www.transparenttextures.com/patterns/wood-pattern.png')`,
-              backgroundSize: '200px',
-              backgroundBlendMode: 'overlay',
-              opacity: 0.7,
-              backgroundColor: `${color}20`
-            }} 
-          />
-          {/* Wood grain effect */}
-          <div 
-            className="absolute inset-0 opacity-40" 
-            style={{ 
-              backgroundImage: 'linear-gradient(90deg, transparent 50%, rgba(0,0,0,0.1) 50%), linear-gradient(transparent 50%, rgba(0,0,0,0.05) 50%)',
-              backgroundSize: '4px 4px',
-              backgroundBlendMode: 'multiply'
-            }} 
-          />
-        </div>
+        />
         
         {/* Frame decorative elements - top left */}
         <div className="absolute -top-8 -left-8 w-16 h-16 z-10">
-          <div 
-            className="absolute inset-0 rounded-full border-2 overflow-hidden"
-            style={{ borderColor: color, transform: 'rotate(45deg)', opacity: 0.8 }}
-          >
-            <div className="absolute inset-0" style={{ 
-              backgroundImage: `url('https://www.transparenttextures.com/patterns/wood-pattern.png')`,
-              backgroundSize: '100px',
-              backgroundBlendMode: 'overlay',
-              backgroundColor: `${color}30`
-            }} />
-          </div>
-          <div 
-            className="absolute inset-2 rounded-full border-2 overflow-hidden"
-            style={{ borderColor: color, transform: 'rotate(15deg)', opacity: 0.6 }}
-          >
-            <div className="absolute inset-0" style={{ 
-              backgroundImage: `url('https://www.transparenttextures.com/patterns/wood-pattern.png')`,
-              backgroundSize: '50px',
-              backgroundBlendMode: 'overlay',
-              backgroundColor: `${color}20`
-            }} />
-          </div>
+          <div className="absolute inset-0 rounded-full border-2"
+            style={{ borderColor: color, transform: 'rotate(45deg)', opacity: 0.6 }}
+          />
+          <div className="absolute inset-2 rounded-full border-2"
+            style={{ borderColor: color, transform: 'rotate(15deg)', opacity: 0.4 }}
+          />
         </div>
         
         {/* Frame decorative elements - bottom right */}
         <div className="absolute -bottom-8 -right-8 w-16 h-16 z-10">
-          <div 
-            className="absolute inset-0 rounded-full border-2 overflow-hidden"
-            style={{ borderColor: color, transform: 'rotate(45deg)', opacity: 0.8 }}
-          >
-            <div className="absolute inset-0" style={{ 
-              backgroundImage: `url('https://www.transparenttextures.com/patterns/wood-pattern.png')`,
-              backgroundSize: '100px',
-              backgroundBlendMode: 'overlay',
-              backgroundColor: `${color}30`
-            }} />
-          </div>
-          <div 
-            className="absolute inset-2 rounded-full border-2 overflow-hidden"
-            style={{ borderColor: color, transform: 'rotate(15deg)', opacity: 0.6 }}
-          >
-            <div className="absolute inset-0" style={{ 
-              backgroundImage: `url('https://www.transparenttextures.com/patterns/wood-pattern.png')`,
-              backgroundSize: '50px',
-              backgroundBlendMode: 'overlay',
-              backgroundColor: `${color}20`
-            }} />
-          </div>
+          <div className="absolute inset-0 rounded-full border-2"
+            style={{ borderColor: color, transform: 'rotate(45deg)', opacity: 0.6 }}
+          />
+          <div className="absolute inset-2 rounded-full border-2"
+            style={{ borderColor: color, transform: 'rotate(15deg)', opacity: 0.4 }}
+          />
         </div>
         
-        {/* Secondary wooden frame for depth */}
-        <div 
-          className="absolute -inset-3 rounded-xl border-4 border-opacity-30 z-0 overflow-hidden"
+        {/* Secondary frame for depth */}
+        <div className="absolute -inset-3 rounded-xl border-4 border-opacity-30 z-0"
           style={{ 
-            borderColor: `${color}70`,
+            borderColor: color,
             transform: 'rotate(1deg)',
-            opacity: 0.7
+            opacity: 0.5
           }}
-        >
-          <div className="absolute inset-0" style={{ 
-            backgroundImage: `url('https://www.transparenttextures.com/patterns/wood-pattern.png')`,
-            backgroundSize: '150px',
-            backgroundBlendMode: 'overlay',
-            backgroundColor: `${color}15`
-          }} />
-        </div>
+        />
         
         {/* Main door frame */}
         <div 
@@ -162,14 +101,6 @@ export const Door = ({ to, imageSrc, label, color, delay = 0 }: DoorProps) => {
           onMouseLeave={() => setIsHovering(false)}
           onClick={handleDoorClick}
         >
-          {/* Wooden frame texture */}
-          <div className="absolute inset-0 pointer-events-none opacity-30 z-10" style={{ 
-            backgroundImage: `url('https://www.transparenttextures.com/patterns/wood-pattern.png')`,
-            backgroundSize: '100px',
-            backgroundBlendMode: 'overlay',
-            mixBlendMode: 'multiply'
-          }} />
-          
           <div className="aspect-[2/3] w-72 md:w-80 relative overflow-hidden cursor-pointer">
             {/* Door image */}
             <img 
@@ -196,29 +127,20 @@ export const Door = ({ to, imageSrc, label, color, delay = 0 }: DoorProps) => {
               </h3>
             </div>
             
-            {/* Door handle - metallic */}
+            {/* Door handle */}
             <div 
               className={cn(
-                "absolute right-4 top-1/2 w-3 h-10 rounded-full transition-all duration-500",
+                "absolute right-4 top-1/2 w-3 h-10 rounded-full bg-white/70 transition-all duration-500",
                 isHovering ? "opacity-100 scale-110" : "opacity-70 scale-100"
               )}
               style={{
-                background: "linear-gradient(90deg, #d4d4d4, #ffffff, #d4d4d4)",
                 boxShadow: `0 0 10px ${color}, 0 0 20px white`
               }}
             />
             
-            {/* Door hinges - metallic */}
-            <div className="absolute left-3 top-1/4 w-1 h-6 rounded-full bg-gray-300" 
-              style={{
-                background: "linear-gradient(90deg, #a0a0a0, #d4d4d4, #a0a0a0)"
-              }}
-            />
-            <div className="absolute left-3 bottom-1/4 w-1 h-6 rounded-full bg-gray-300"
-              style={{
-                background: "linear-gradient(90deg, #a0a0a0, #d4d4d4, #a0a0a0)"
-              }}
-            />
+            {/* Door hinges */}
+            <div className="absolute left-3 top-1/4 w-1 h-6 rounded-full bg-white/30" />
+            <div className="absolute left-3 bottom-1/4 w-1 h-6 rounded-full bg-white/30" />
           </div>
         </div>
         
