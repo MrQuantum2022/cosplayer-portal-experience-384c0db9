@@ -97,7 +97,7 @@
   }
   
   .door {
-    @apply absolute inset-0 transform-gpu backface-hidden transition-all duration-1000;
+    @apply absolute inset-0 transform-gpu transition-all duration-1000;
   }
 
   .ripple-effect {
@@ -114,6 +114,10 @@
 }
 
 @layer utilities {
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  
   .animate-delay-1 {
     animation-delay: 0.1s;
   }
