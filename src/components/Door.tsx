@@ -48,13 +48,14 @@ export const Door = ({ to, imageSrc, label, color, delay = 0 }: DoorProps) => {
       style={{ transitionDelay: `${delay}ms` }}
     >
       <div className="relative group">
-        {/* Suzume-inspired door frame */}
+        {/* Suzume-inspired door frame with reduced opacity (80%) */}
         <div className="absolute -inset-6 rounded-2xl border-8 border-opacity-20 z-0"
           style={{ 
             borderColor: color,
             background: `radial-gradient(circle at center, ${color}10 0%, transparent 70%)`,
             transform: 'rotate(-2deg)',
-            boxShadow: `0 0 20px ${color}40`
+            boxShadow: `0 0 20px ${color}40`,
+            opacity: 0.8 // Reduced opacity to 80%
           }}
         />
         
@@ -66,6 +67,8 @@ export const Door = ({ to, imageSrc, label, color, delay = 0 }: DoorProps) => {
           <div className="absolute inset-2 rounded-full border-2"
             style={{ borderColor: color, transform: 'rotate(15deg)', opacity: 0.4 }}
           />
+          {/* Particle effect on top left corner */}
+          <ParticleEffect count={5} color={color} />
         </div>
         
         {/* Frame decorative elements - bottom right */}
@@ -76,16 +79,35 @@ export const Door = ({ to, imageSrc, label, color, delay = 0 }: DoorProps) => {
           <div className="absolute inset-2 rounded-full border-2"
             style={{ borderColor: color, transform: 'rotate(15deg)', opacity: 0.4 }}
           />
+          {/* Particle effect on bottom right corner */}
+          <ParticleEffect count={5} color={color} />
         </div>
         
-        {/* Secondary frame for depth */}
+        {/* Secondary frame for depth - also with reduced opacity */}
         <div className="absolute -inset-3 rounded-xl border-4 border-opacity-30 z-0"
           style={{ 
             borderColor: color,
             transform: 'rotate(1deg)',
-            opacity: 0.5
+            opacity: 0.4  // Slightly reduced from original 0.5
           }}
         />
+        
+        {/* Additional particle effects on the frame edges */}
+        <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+          <ParticleEffect count={3} color={color} />
+        </div>
+        
+        <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
+          <ParticleEffect count={3} color={color} />
+        </div>
+        
+        <div className="absolute top-1/2 -left-6 transform -translate-y-1/2">
+          <ParticleEffect count={3} color={color} />
+        </div>
+        
+        <div className="absolute top-1/2 -right-6 transform -translate-y-1/2">
+          <ParticleEffect count={3} color={color} />
+        </div>
         
         {/* Main door frame */}
         <div 
@@ -95,7 +117,8 @@ export const Door = ({ to, imageSrc, label, color, delay = 0 }: DoorProps) => {
           )}
           style={{ 
             transformOrigin: 'left center',
-            boxShadow: `0 10px 30px -5px ${color}40, 0 0 10px ${color}20`
+            boxShadow: `0 10px 30px -5px ${color}40, 0 0 10px ${color}20`,
+            opacity: 0.95 // Slight opacity on the door frame itself
           }}
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
