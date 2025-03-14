@@ -47,7 +47,7 @@ const Index = () => {
       </header>
       
       {/* Portal doors section */}
-      <main className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 lg:gap-16 px-4 mb-16">
+      <main className="flex flex-col md:flex-row items-center justify-center gap-16 md:gap-20 lg:gap-24 px-8 mb-16">
         <Door 
           to="/warrior" 
           imageSrc="/lovable-uploads/daf6d98a-de59-49b2-b06c-ee84b1687687.png" 

@@ -48,9 +48,49 @@ export const Door = ({ to, imageSrc, label, color, delay = 0 }: DoorProps) => {
       style={{ transitionDelay: `${delay}ms` }}
     >
       <div className="relative group">
+        {/* Suzume-inspired door frame */}
+        <div className="absolute -inset-6 rounded-2xl border-8 border-opacity-20 z-0"
+          style={{ 
+            borderColor: color,
+            background: `radial-gradient(circle at center, ${color}10 0%, transparent 70%)`,
+            transform: 'rotate(-2deg)',
+            boxShadow: `0 0 20px ${color}40`
+          }}
+        />
+        
+        {/* Frame decorative elements - top left */}
+        <div className="absolute -top-8 -left-8 w-16 h-16 z-10">
+          <div className="absolute inset-0 rounded-full border-2"
+            style={{ borderColor: color, transform: 'rotate(45deg)', opacity: 0.6 }}
+          />
+          <div className="absolute inset-2 rounded-full border-2"
+            style={{ borderColor: color, transform: 'rotate(15deg)', opacity: 0.4 }}
+          />
+        </div>
+        
+        {/* Frame decorative elements - bottom right */}
+        <div className="absolute -bottom-8 -right-8 w-16 h-16 z-10">
+          <div className="absolute inset-0 rounded-full border-2"
+            style={{ borderColor: color, transform: 'rotate(45deg)', opacity: 0.6 }}
+          />
+          <div className="absolute inset-2 rounded-full border-2"
+            style={{ borderColor: color, transform: 'rotate(15deg)', opacity: 0.4 }}
+          />
+        </div>
+        
+        {/* Secondary frame for depth */}
+        <div className="absolute -inset-3 rounded-xl border-4 border-opacity-30 z-0"
+          style={{ 
+            borderColor: color,
+            transform: 'rotate(1deg)',
+            opacity: 0.5
+          }}
+        />
+        
+        {/* Main door frame */}
         <div 
           className={cn(
-            "door-frame rounded-xl overflow-hidden",
+            "door-frame rounded-xl overflow-hidden z-10 relative",
             isOpening ? "animate-door-open" : "hover:scale-105 transition-transform duration-500",
           )}
           style={{ 
@@ -97,7 +137,29 @@ export const Door = ({ to, imageSrc, label, color, delay = 0 }: DoorProps) => {
                 boxShadow: `0 0 10px ${color}, 0 0 20px white`
               }}
             />
+            
+            {/* Door hinges */}
+            <div className="absolute left-3 top-1/4 w-1 h-6 rounded-full bg-white/30" />
+            <div className="absolute left-3 bottom-1/4 w-1 h-6 rounded-full bg-white/30" />
           </div>
+        </div>
+        
+        {/* Mystical seal runes around the door frame */}
+        <div className="absolute -inset-4 z-0 opacity-0 group-hover:opacity-70 transition-opacity duration-700">
+          {[...Array(8)].map((_, i) => (
+            <div 
+              key={i}
+              className="absolute w-4 h-4 rounded-full"
+              style={{
+                background: color,
+                top: `${10 + (i * 10)}%`,
+                left: i % 2 === 0 ? '-10px' : 'calc(100% + 6px)',
+                opacity: 0.6,
+                boxShadow: `0 0 8px ${color}`,
+                animation: `pulse 3s infinite ${i * 0.2}s`
+              }}
+            />
+          ))}
         </div>
         
         {/* Particle effects when hovering */}
