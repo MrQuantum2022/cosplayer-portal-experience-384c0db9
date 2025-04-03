@@ -1,0 +1,412 @@
+
+/* Base Styles */
+:root {
+  --background: 210 40% 98%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 221.2 83% 53.3%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 221.2 83% 53.3%;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 217.2 91.2% 59.8%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 224.3 76.3% 48%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  transition: color 300ms, background-color 300ms;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Header */
+.header {
+  padding: 1.5rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: hsla(var(--background), 0.8);
+  backdrop-filter: blur(8px);
+}
+
+.theme-toggle {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.theme-toggle button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: hsl(var(--foreground));
+  padding: 0.5rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.theme-toggle button:hover {
+  background-color: hsla(var(--foreground), 0.1);
+}
+
+/* Main Content */
+.main {
+  min-height: calc(100vh - 180px);
+  padding: 2rem 0;
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.title-gradient {
+  background: linear-gradient(to right, hsl(var(--primary)), hsl(217.2, 91.2%, 59.8%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.dark .title-gradient {
+  background: linear-gradient(to right, hsl(217.2, 91.2%, 59.8%), hsl(var(--primary)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: hsl(var(--muted-foreground));
+}
+
+/* Doors Section */
+.doors-section {
+  padding: 2rem 0 4rem;
+}
+
+.doors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.door-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.door-frame {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  height: 400px;
+  overflow: hidden;
+  border-radius: var(--radius);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border: 8px solid hsla(0, 0%, 100%, 0.2);
+  backdrop-filter: blur(8px);
+  transform: perspective(1000px);
+  transition: transform 0.7s, box-shadow 0.7s;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.particle-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  background-color: hsla(0, 0%, 100%, 0.7);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: particle-float 3s ease-in-out infinite;
+}
+
+@keyframes particle-float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+  }
+}
+
+.door-frame:hover {
+  transform: perspective(1000px) rotateY(180deg);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.door {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transition: transform 1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.door-front {
+  transform: rotateY(0deg);
+}
+
+.door-back {
+  transform: rotateY(180deg);
+  background: radial-gradient(circle at center, hsla(var(--primary), 0.3), hsla(var(--background), 0.9));
+}
+
+.door-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.door-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.enter-button {
+  padding: 0.75rem 1.5rem;
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.enter-button:hover {
+  background-color: hsl(222.2, 47.4%, 11.2%);
+  box-shadow: 0 0 20px hsla(var(--primary), 0.6);
+}
+
+/* Door Frame Themes */
+.door-frame-warrior {
+  background: linear-gradient(45deg, #f97316, #f59e0b);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.door-frame-creature {
+  background: linear-gradient(45deg, #8b5cf6, #6366f1);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+.door-frame-water {
+  background: linear-gradient(45deg, #0ea5e9, #38bdf8);
+  border-color: rgba(14, 165, 233, 0.3);
+}
+
+/* Toast Notifications */
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  padding: 1rem;
+  border-radius: var(--radius);
+  background-color: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-width: 300px;
+  max-width: 100%;
+  animation: toast-in 0.3s ease-out forwards;
+  transform: translateX(120%);
+}
+
+.toast-icon {
+  flex-shrink: 0;
+}
+
+.toast-content {
+  flex-grow: 1;
+}
+
+.toast-title {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.toast-description {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: hsl(var(--foreground));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  border-radius: 9999px;
+  transition: background-color 0.2s;
+}
+
+.toast-close:hover {
+  background-color: hsla(var(--foreground), 0.1);
+}
+
+@keyframes toast-in {
+  from {
+    transform: translateX(120%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes toast-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(120%);
+  }
+}
+
+.toast-exiting {
+  animation: toast-out 0.3s ease-in forwards;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 2rem 0;
+  background-color: hsla(var(--background), 0.8);
+  border-top: 1px solid hsl(var(--border));
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1.25rem;
+  }
+  
+  .doors-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Animations */
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
+  }
+  100% {
+    width: 500px;
+    height: 500px;
+    opacity: 0;
+  }
+}
+
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background-color: hsla(0, 0%, 100%, 0.3);
+  animation: ripple 1s ease-out forwards;
+}

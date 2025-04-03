@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Warrior Cosplay - Cosplayer Portal Experience</title>
+    <meta name="description" content="Warrior Cosplay Guide" />
+    <meta name="author" content="Lovable" />
+    <meta property="og:image" content="/og-image.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="warrior.css">
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+  </head>
+
+  <body>
+    <div id="root">
+      <header class="header">
+        <div class="container">
+          <div class="header-content">
+            <a href="index.html" class="back-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m15 18-6-6 6-6"></path>
+              </svg>
+              Back
+            </a>
+            <div class="theme-toggle">
+              <button id="theme-toggle-btn" aria-label="Toggle theme">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon">
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <path d="M12 2v2"></path>
+                  <path d="M12 20v2"></path>
+                  <path d="M5 5l1.5 1.5"></path>
+                  <path d="M17.5 17.5l1.5 1.5"></path>
+                  <path d="M2 12h2"></path>
+                  <path d="M20 12h2"></path>
+                  <path d="M5 19l1.5-1.5"></path>
+                  <path d="M17.5 6.5l1.5-1.5"></path>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon hidden">
+                  <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main character-page">
+        <div class="container">
+          <div class="character-content">
+            <div class="character-image-container">
+              <div class="particle-container" id="character-particles"></div>
+              <img src="/lovable-uploads/254a129d-44db-43fb-8e1a-20ef56e8b35a.png" alt="Warrior character" class="character-image" />
+            </div>
+            
+            <div class="character-info">
+              <h1 class="title title-gradient">Warrior Cosplay</h1>
+              
+              <div class="info-section">
+                <h2>Character Overview</h2>
+                <p>The Warrior is a powerful fighter known for incredible strength and masterful combat skills. Cosplaying as this character requires attention to armor details, weapon crafting, and a confident stance.</p>
+              </div>
+              
+              <div class="info-section">
+                <h2>Costume Components</h2>
+                <ul class="component-list">
+                  <li>
+                    <span class="component-name">Armor Plates</span>
+                    <span class="component-desc">Craft from EVA foam or thermoplastic</span>
+                  </li>
+                  <li>
+                    <span class="component-name">Battle Sword</span>
+                    <span class="component-desc">Wooden base with metallic paint finish</span>
+                  </li>
+                  <li>
+                    <span class="component-name">Cape</span>
+                    <span class="component-desc">Medium-weight fabric with weathered edge</span>
+                  </li>
+                  <li>
+                    <span class="component-name">Helmet</span>
+                    <span class="component-desc">Full-coverage with ornate details</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div class="info-section">
+                <h2>Material Suggestions</h2>
+                <p>EVA foam (various thicknesses), Worbla thermoplastic, faux leather, metallic paints, weathering techniques, and battle-worn fabric treatments are ideal for this costume.</p>
+              </div>
+              
+              <div class="actions">
+                <button class="primary-button" id="save-button">Save to Collection</button>
+                <button class="secondary-button" id="share-button">Share</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <div class="container">
+          <p>© 2025 Cosplayer Portal Experience. All rights reserved.</p>
+        </div>
+      </footer>
+
+      <div id="toast-container" class="toast-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="warrior.js"></script>
+  </body>
+</html>

@@ -1,18 +1,109 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>cosplayer-portal-experience</title>
-    <meta name="description" content="Lovable Generated Project" />
+    <title>Cosplayer Portal Experience</title>
+    <meta name="description" content="Cosplayer Portal Experience" />
     <meta name="author" content="Lovable" />
     <meta property="og:image" content="/og-image.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
   </head>
 
   <body>
-    <div id="root"></div>
-    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
+    <div id="root">
+      <header class="header">
+        <div class="container">
+          <div class="theme-toggle">
+            <button id="theme-toggle-btn" aria-label="Toggle theme">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="M5 5l1.5 1.5"></path>
+                <path d="M17.5 17.5l1.5 1.5"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="M5 19l1.5-1.5"></path>
+                <path d="M17.5 6.5l1.5-1.5"></path>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon hidden">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <section class="hero">
+          <div class="container">
+            <h1 class="title title-gradient">Cosplayer Portal Experience</h1>
+            <p class="subtitle">Choose your cosplay adventure</p>
+          </div>
+        </section>
+
+        <section class="doors-section">
+          <div class="container">
+            <div class="doors-grid">
+              <!-- Warrior Door -->
+              <div class="door-container">
+                <div class="door-frame door-frame-warrior">
+                  <div class="particle-container" id="warrior-particles"></div>
+                  <div class="door door-front">
+                    <img src="/lovable-uploads/254a129d-44db-43fb-8e1a-20ef56e8b35a.png" alt="Warrior character" />
+                  </div>
+                  <div class="door door-back">
+                    <a href="warrior.html" class="enter-button">Enter</a>
+                  </div>
+                </div>
+                <h3 class="door-title">Warrior</h3>
+              </div>
+
+              <!-- Creature Door -->
+              <div class="door-container">
+                <div class="door-frame door-frame-creature">
+                  <div class="particle-container" id="creature-particles"></div>
+                  <div class="door door-front">
+                    <img src="/lovable-uploads/064364bd-a24d-4abf-8223-cc11c7c8eb4a.png" alt="Creature character" />
+                  </div>
+                  <div class="door door-back">
+                    <a href="creature.html" class="enter-button">Enter</a>
+                  </div>
+                </div>
+                <h3 class="door-title">Creature</h3>
+              </div>
+
+              <!-- Water Breather Door -->
+              <div class="door-container">
+                <div class="door-frame door-frame-water">
+                  <div class="particle-container" id="water-particles"></div>
+                  <div class="door door-front">
+                    <img src="/lovable-uploads/d3dcf9d3-cc0b-47cf-ab94-19d186bbf69b.png" alt="Water Breather character" />
+                  </div>
+                  <div class="door door-back">
+                    <a href="waterbreather.html" class="enter-button">Enter</a>
+                  </div>
+                </div>
+                <h3 class="door-title">Water Breather</h3>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="container">
+          <p>© 2025 Cosplayer Portal Experience. All rights reserved.</p>
+        </div>
+      </footer>
+
+      <div id="toast-container" class="toast-container"></div>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
