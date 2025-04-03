@@ -1,194 +1,268 @@
-// DOM Elements
-const themeToggleBtn = document.getElementById('theme-toggle-btn');
-const sunIcon = themeToggleBtn.querySelector('.sun-icon');
-const moonIcon = themeToggleBtn.querySelector('.moon-icon');
-const doorFrames = document.querySelectorAll('.door-frame');
-const toastContainer = document.getElementById('toast-container');
-const particles = {
-  warrior: document.getElementById('warrior-particles'),
-  creature: document.getElementById('creature-particles'),
-  water: document.getElementById('water-particles')
-};
 
-// Theme Toggle
-function initializeTheme() {
-  // Check for saved theme preference or use system preference
-  const savedTheme = localStorage.getItem('theme');
-  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  
-  if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-    document.documentElement.classList.add('dark');
-    sunIcon.classList.add('hidden');
-    moonIcon.classList.remove('hidden');
+// DOM elements
+const app = document.getElementById('app');
+const themeToggle = document.getElementById('theme-toggle');
+const sunIcon = document.getElementById('sun-icon');
+const moonIcon = document.getElementById('moon-icon');
+const header = document.getElementById('header');
+const instructions = document.getElementById('instructions');
+const doorsContainer = document.getElementById('doors-container');
+const particlesContainer = document.getElementById('particles-container');
+const toastContainer = document.getElementById('toast-container');
+
+// Door data
+const doors = [
+  {
+    to: "warrior.html",
+    imageSrc: "lovable-uploads/daf6d98a-de59-49b2-b06c-ee84b1687687.png",
+    label: "Warrior",
+    color: "#D90429",
+    delay: 300
+  },
+  {
+    to: "water-breather.html",
+    imageSrc: "lovable-uploads/a077f559-77fa-46dc-bf68-243b7b7b87f1.png",
+    label: "Water Breather",
+    color: "#0096C7",
+    delay: 600
+  },
+  {
+    to: "creature.html",
+    imageSrc: "lovable-uploads/064364bd-a24d-4abf-8223-cc11c7c8eb4a.png",
+    label: "Creature",
+    color: "#2B9348",
+    delay: 900
+  }
+];
+
+// Theme handling
+let isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+function updateTheme() {
+  if (isDarkMode) {
+    document.body.classList.add('dark');
+    sunIcon.style.display = 'none';
+    moonIcon.style.display = 'block';
   } else {
-    document.documentElement.classList.remove('dark');
-    sunIcon.classList.remove('hidden');
-    moonIcon.classList.add('hidden');
+    document.body.classList.remove('dark');
+    sunIcon.style.display = 'block';
+    moonIcon.style.display = 'none';
   }
 }
 
 function toggleTheme() {
-  const isDark = document.documentElement.classList.toggle('dark');
-  
-  if (isDark) {
-    sunIcon.classList.add('hidden');
-    moonIcon.classList.remove('hidden');
-    localStorage.setItem('theme', 'dark');
-  } else {
-    sunIcon.classList.remove('hidden');
-    moonIcon.classList.add('hidden');
-    localStorage.setItem('theme', 'light');
-  }
-  
-  showToast({
-    title: `${isDark ? 'Dark' : 'Light'} Mode Activated`,
-    description: `Switched to ${isDark ? 'dark' : 'light'} theme.`,
-    variant: 'default'
+  isDarkMode = !isDarkMode;
+  localStorage.setItem('darkMode', isDarkMode);
+  updateTheme();
+}
+
+themeToggle.addEventListener('click', toggleTheme);
+
+// Create door elements
+function createDoors() {
+  doors.forEach(door => {
+    const doorElement = document.createElement('div');
+    doorElement.className = 'door-container';
+    doorElement.style.transitionDelay = `${door.delay}ms`;
+    
+    doorElement.innerHTML = `
+      <div class="door-group">
+        <!-- Suzume-inspired door frame with reduced opacity (80%) -->
+        <div class="door-frame-outer" style="
+          border: 8px solid ${door.color}; 
+          background: radial-gradient(circle at center, ${door.color}10 0%, transparent 70%);
+          box-shadow: 0 0 20px ${door.color}40;
+        "></div>
+        
+        <!-- Frame decorative elements - top left -->
+        <div class="door-frame-element door-frame-element-tl">
+          <div class="door-frame-ring" style="border-color: ${door.color};"></div>
+          <div class="door-frame-ring-inner" style="border-color: ${door.color};"></div>
+        </div>
+        
+        <!-- Frame decorative elements - bottom right -->
+        <div class="door-frame-element door-frame-element-br">
+          <div class="door-frame-ring" style="border-color: ${door.color};"></div>
+          <div class="door-frame-ring-inner" style="border-color: ${door.color};"></div>
+        </div>
+        
+        <!-- Secondary frame for depth - also with reduced opacity -->
+        <div class="door-frame-secondary" style="
+          border: 4px solid ${door.color};
+        "></div>
+        
+        <!-- Main door frame -->
+        <div class="door-frame aspect-2-3" data-to="${door.to}" data-label="${door.label}">
+          <!-- Door image -->
+          <img src="${door.imageSrc}" alt="${door.label} door" class="door-image" />
+          
+          <!-- Overlay -->
+          <div class="door-overlay"></div>
+          
+          <!-- Door handle -->
+          <div class="door-handle" style="box-shadow: 0 0 10px ${door.color}, 0 0 20px white;"></div>
+          
+          <!-- Door hinges -->
+          <div class="door-hinge door-hinge-top"></div>
+          <div class="door-hinge door-hinge-bottom"></div>
+        </div>
+        
+        <!-- Mystical seal runes around the door frame -->
+        <div class="door-seal">
+          ${Array.from({length: 8}).map((_, i) => `
+            <div class="door-seal-rune" style="
+              background: ${door.color};
+              top: ${10 + i * 10}%;
+              left: ${i % 2 === 0 ? '-10px' : 'calc(100% + 6px)'};
+              animation-delay: ${i * 0.2}s;
+            "></div>
+          `).join('')}
+        </div>
+        
+        <!-- Light effect behind the door -->
+        <div class="light-effect" style="
+          background: radial-gradient(circle at center, ${door.color} 0%, transparent 70%);
+        "></div>
+      </div>
+    `;
+    
+    doorsContainer.appendChild(doorElement);
   });
 }
 
-// Toast Notifications
-function showToast({ title, description, variant = 'default', duration = 5000 }) {
+// Create particle effects
+function createParticles(count = 30, color = 'rgba(59, 130, 246, 0.5)') {
+  for (let i = 0; i < count; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.left = `${Math.random() * 100}%`;
+    particle.style.top = `${Math.random() * 100}%`;
+    particle.style.opacity = Math.random() * 0.7 + 0.3;
+    particle.style.backgroundColor = color;
+    particle.style.animationDuration = `${Math.random() * 3 + 2}s`;
+    particle.style.animationDelay = `${Math.random() * 2}s`;
+    particlesContainer.appendChild(particle);
+  }
+}
+
+// Create door particles
+function createDoorParticles(doorElement, count = 5, color) {
+  for (let i = 0; i < count; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.left = `${Math.random() * 100}%`;
+    particle.style.top = `${Math.random() * 100}%`;
+    particle.style.opacity = Math.random() * 0.7 + 0.3;
+    particle.style.backgroundColor = color;
+    particle.style.animationDuration = `${Math.random() * 3 + 2}s`;
+    particle.style.animationDelay = `${Math.random() * 2}s`;
+    
+    doorElement.querySelector('.door-frame-element-tl').appendChild(particle.cloneNode(true));
+    doorElement.querySelector('.door-frame-element-br').appendChild(particle.cloneNode(true));
+  }
+}
+
+// Show toast notification
+function showToast(message, duration = 3000) {
   const toast = document.createElement('div');
-  toast.className = `toast toast-${variant}`;
-  toast.setAttribute('role', 'alert');
-  
-  toast.innerHTML = `
-    <div class="toast-content">
-      <div class="toast-title">${title}</div>
-      ${description ? `<div class="toast-description">${description}</div>` : ''}
-    </div>
-    <button class="toast-close" aria-label="Close">
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="18" y1="6" x2="6" y2="18"></line>
-        <line x1="6" y1="6" x2="18" y2="18"></line>
-      </svg>
-    </button>
-  `;
-  
-  const closeButton = toast.querySelector('.toast-close');
-  closeButton.addEventListener('click', () => dismissToast(toast));
+  toast.className = 'toast';
+  toast.textContent = message;
   
   toastContainer.appendChild(toast);
   
-  // Force reflow to enable animation
-  toast.offsetHeight;
-  
-  // Auto dismiss after duration
-  const timeoutId = setTimeout(() => dismissToast(toast), duration);
-  toast._timeoutId = timeoutId;
-  
-  return toast;
-}
-
-function dismissToast(toast) {
-  clearTimeout(toast._timeoutId);
-  toast.classList.add('toast-exiting');
-  
-  toast.addEventListener('animationend', () => {
-    toast.remove();
-  });
-}
-
-// Particle Effects
-function createParticles() {
-  const particleTypes = ['warrior', 'creature', 'water'];
-  
-  particleTypes.forEach(type => {
-    const container = particles[type];
-    if (!container) return;
-    
-    // Clear existing particles
-    container.innerHTML = '';
-    
-    // Create new particles
-    for (let i = 0; i < 20; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      
-      // Random position
-      const x = Math.random() * 100;
-      const y = Math.random() * 100;
-      
-      // Random size
-      const size = Math.random() * 6 + 2;
-      
-      // Random animation delay
-      const delay = Math.random() * 3;
-      
-      particle.style.left = `${x}%`;
-      particle.style.top = `${y}%`;
-      particle.style.width = `${size}px`;
-      particle.style.height = `${size}px`;
-      particle.style.animationDelay = `${delay}s`;
-      
-      container.appendChild(particle);
-    }
-  });
-}
-
-// Door Interactions
-function addDoorInteractions() {
-  doorFrames.forEach(doorFrame => {
-    doorFrame.addEventListener('click', (e) => {
-      const doorBack = doorFrame.querySelector('.door-back');
-      const enterButton = doorBack.querySelector('.enter-button');
-      
-      // If clicking on the enter button, let the default link behavior happen
-      if (e.target === enterButton) return;
-      
-      // Otherwise, prevent default and just rotate the door
-      e.preventDefault();
-      
-      // Add ripple effect
-      const ripple = document.createElement('div');
-      ripple.className = 'ripple-effect';
-      ripple.style.left = `${e.offsetX}px`;
-      ripple.style.top = `${e.offsetY}px`;
-      doorFrame.appendChild(ripple);
-      
-      // Remove ripple after animation completes
-      setTimeout(() => {
-        ripple.remove();
-      }, 1000);
-    });
-  });
-}
-
-// Initialize Everything
-function init() {
-  initializeTheme();
-  createParticles();
-  addDoorInteractions();
-  
-  // Event Listeners
-  themeToggleBtn.addEventListener('click', toggleTheme);
-  
-  // Listen for system theme changes
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-    if (!localStorage.getItem('theme')) {
-      if (e.matches) {
-        document.documentElement.classList.add('dark');
-        sunIcon.classList.add('hidden');
-        moonIcon.classList.remove('hidden');
-      } else {
-        document.documentElement.classList.remove('dark');
-        sunIcon.classList.remove('hidden');
-        moonIcon.classList.add('hidden');
-      }
-    }
-  });
-  
-  // Show welcome toast
   setTimeout(() => {
-    showToast({
-      title: 'Welcome to Cosplayer Portal',
-      description: 'Choose your cosplay adventure!',
-      variant: 'default',
-      duration: 5000
-    });
-  }, 1000);
+    toast.style.animation = 'toast-out 0.3s forwards';
+    setTimeout(() => {
+      toastContainer.removeChild(toast);
+    }, 300);
+  }, duration);
 }
 
-// Run initialization when DOM is fully loaded
+// Door click handler
+function handleDoorClick(event) {
+  // Find the closest door-frame element
+  const doorFrame = event.target.closest('.door-frame');
+  if (!doorFrame) return;
+  
+  const to = doorFrame.getAttribute('data-to');
+  const label = doorFrame.getAttribute('data-label');
+  
+  // Prevent multiple clicks
+  if (doorFrame.classList.contains('opening')) return;
+  
+  // Show animation and navigate
+  doorFrame.classList.add('opening');
+  showToast(`Entering ${label} world...`);
+  
+  // Delay navigation to allow door animation to complete
+  setTimeout(() => {
+    window.location.href = to;
+  }, 1500);
+}
+
+// Initialize the page
+function init() {
+  // Apply saved theme
+  updateTheme();
+  
+  // Create doors
+  createDoors();
+  
+  // Create particles
+  createParticles();
+  
+  // Add door click listener
+  doorsContainer.addEventListener('click', handleDoorClick);
+  
+  // Add hover particles to doors
+  document.querySelectorAll('.door-container').forEach(doorContainer => {
+    const doorGroup = doorContainer.querySelector('.door-group');
+    const color = doorGroup.querySelector('.door-frame-outer').style.borderColor;
+    
+    doorGroup.addEventListener('mouseenter', () => {
+      // Create additional particles on hover
+      const frameElements = doorContainer.querySelectorAll('.door-frame-element');
+      frameElements.forEach(el => {
+        for (let i = 0; i < 5; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'particle';
+          particle.style.left = `${Math.random() * 100}%`;
+          particle.style.top = `${Math.random() * 100}%`;
+          particle.style.opacity = Math.random() * 0.7 + 0.3;
+          particle.style.backgroundColor = color;
+          particle.style.animationDuration = `${Math.random() * 3 + 2}s`;
+          el.appendChild(particle);
+          
+          // Remove after animation
+          setTimeout(() => {
+            if (el.contains(particle)) {
+              el.removeChild(particle);
+            }
+          }, 3000);
+        }
+      });
+    });
+  });
+  
+  // Show elements with animation
+  setTimeout(() => {
+    header.classList.remove('opacity-0', 'translate-y-10');
+    header.classList.add('opacity-100', 'translate-y-0');
+    
+    setTimeout(() => {
+      instructions.classList.remove('opacity-0', 'translate-y-10');
+      instructions.classList.add('opacity-100', 'translate-y-0');
+    }, 700);
+    
+    // Animate in doors
+    const doorContainers = document.querySelectorAll('.door-container');
+    doorContainers.forEach(container => {
+      setTimeout(() => {
+        container.classList.add('visible');
+      }, parseInt(container.style.transitionDelay));
+    });
+  }, 500);
+}
+
+// Run initialization when page loads
 document.addEventListener('DOMContentLoaded', init);
