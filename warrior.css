@@ -55,6 +55,11 @@
   overflow: hidden;
   border-radius: 0.75rem;
   border: 2px solid rgba(220, 38, 38, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.image-frame.pulse {
+  transform: scale(1.02);
 }
 
 .main-image {
@@ -234,6 +239,109 @@
 
 .back-button:active {
   transform: scale(0.95);
+}
+
+/* Particle styles */
+.particles-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: particle-float 3s ease-in-out infinite;
+}
+
+@keyframes particle-float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-10px) translateX(5px);
+  }
+  50% {
+    transform: translateY(-15px) translateX(0);
+  }
+  75% {
+    transform: translateY(-5px) translateX(-5px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes toast-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toast-out {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Door frame elements */
+.door-frame-element {
+  position: relative;
+  overflow: hidden;
+  width: 4rem;
+  height: 4rem;
+  z-index: 10;
+  opacity: 0.8;
+}
+
+.door-frame-element-tl {
+  top: -2rem;
+  left: -2rem;
+}
+
+.door-frame-element-br {
+  bottom: -2rem;
+  right: -2rem;
+}
+
+.door-frame-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(220, 38, 38, 0.8);
+  opacity: 0.6;
+  transform: rotate(45deg);
+}
+
+.door-frame-ring-inner {
+  position: absolute;
+  inset: 0.5rem;
+  border-radius: 50%;
+  border: 2px solid rgba(220, 38, 38, 0.6);
+  opacity: 0.4;
+  transform: rotate(15deg);
 }
 
 /* Media queries */
