@@ -1,9 +1,8 @@
 
 import { useState, useEffect } from 'react';
-import { ThemeToggle } from '@/components/ThemeToggle';
-import { Door } from '@/components/Door';
-import { cn } from '@/lib/utils';
-import { ParticleEffect } from '@/components/ParticleEffect';
+import { ThemeToggle } from '../components/ThemeToggle';
+import { Door } from '../components/Door';
+import { ParticleEffect } from '../components/ParticleEffect';
 
 const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -31,10 +30,7 @@ const Index = () => {
       <ThemeToggle />
       
       {/* Header */}
-      <header className={cn(
-        "text-center mb-16 transition-all duration-1000 ease-out",
-        isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      )}>
+      <header className={`text-center mb-16 transition-all duration-1000 ease-out ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
         <div className="inline-block mb-4">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold title-gradient tracking-tight">
             Cosplayer Portal
@@ -74,10 +70,7 @@ const Index = () => {
       </main>
       
       {/* Instructions */}
-      <div className={cn(
-        "max-w-md mx-auto text-center text-gray-500 dark:text-gray-400 transition-all duration-1000 ease-out px-4",
-        isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      )} style={{ transitionDelay: '700ms' }}>
+      <div className={`max-w-md mx-auto text-center text-gray-500 dark:text-gray-400 transition-all duration-1000 ease-out px-4 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`} style={{ transitionDelay: '700ms' }}>
         <p className="text-sm">
           Click on a door to enter the world of each cosplay. Inspired by Suzume no Tojimari.
         </p>

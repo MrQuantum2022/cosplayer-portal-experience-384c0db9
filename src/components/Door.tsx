@@ -1,7 +1,6 @@
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { cn } from '@/lib/utils';
 import { ParticleEffect } from './ParticleEffect';
 import { toast } from 'sonner';
 
@@ -41,10 +40,7 @@ export const Door = ({ to, imageSrc, label, color, delay = 0 }: DoorProps) => {
 
   return (
     <div 
-      className={cn(
-        "transition-all duration-1000 ease-out transform",
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
-      )}
+      className={`transition-all duration-1000 ease-out transform ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       <div className="relative group">
@@ -55,7 +51,7 @@ export const Door = ({ to, imageSrc, label, color, delay = 0 }: DoorProps) => {
             background: `radial-gradient(circle at center, ${color}10 0%, transparent 70%)`,
             transform: 'rotate(-2deg)',
             boxShadow: `0 0 20px ${color}40`,
-            opacity: 0.8 // Reduced opacity to 80%
+            opacity: 0.8
           }}
         />
         
@@ -88,7 +84,7 @@ export const Door = ({ to, imageSrc, label, color, delay = 0 }: DoorProps) => {
           style={{ 
             borderColor: color,
             transform: 'rotate(1deg)',
-            opacity: 0.4  // Slightly reduced from original 0.5
+            opacity: 0.4
           }}
         />
         
@@ -111,14 +107,11 @@ export const Door = ({ to, imageSrc, label, color, delay = 0 }: DoorProps) => {
         
         {/* Main door frame */}
         <div 
-          className={cn(
-            "door-frame rounded-xl overflow-hidden z-10 relative",
-            isOpening ? "animate-door-open" : "hover:scale-105 transition-transform duration-500",
-          )}
+          className={`door-frame rounded-xl overflow-hidden z-10 relative ${isOpening ? "animate-door-open" : "hover:scale-105 transition-transform duration-500"}`}
           style={{ 
             transformOrigin: 'left center',
             boxShadow: `0 10px 30px -5px ${color}40, 0 0 10px ${color}20`,
-            opacity: 0.95 // Slight opacity on the door frame itself
+            opacity: 0.95
           }}
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
@@ -134,28 +127,19 @@ export const Door = ({ to, imageSrc, label, color, delay = 0 }: DoorProps) => {
             
             {/* Overlay */}
             <div 
-              className={cn(
-                "absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent transition-opacity duration-500",
-                isHovering ? "opacity-80" : "opacity-50"
-              )}
+              className={`absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent transition-opacity duration-500 ${isHovering ? "opacity-80" : "opacity-50"}`}
             />
             
             {/* Label */}
             <div className="absolute bottom-0 left-0 right-0 text-center p-4 transform transition-all duration-500">
-              <h3 className={cn(
-                "text-xl font-bold text-white",
-                isHovering ? "scale-110" : "scale-100"
-              )}>
+              <h3 className={`text-xl font-bold text-white ${isHovering ? "scale-110" : "scale-100"}`}>
                 {label}
               </h3>
             </div>
             
             {/* Door handle */}
             <div 
-              className={cn(
-                "absolute right-4 top-1/2 w-3 h-10 rounded-full bg-white/70 transition-all duration-500",
-                isHovering ? "opacity-100 scale-110" : "opacity-70 scale-100"
-              )}
+              className={`absolute right-4 top-1/2 w-3 h-10 rounded-full bg-white/70 transition-all duration-500 ${isHovering ? "opacity-100 scale-110" : "opacity-70 scale-100"}`}
               style={{
                 boxShadow: `0 0 10px ${color}, 0 0 20px white`
               }}
@@ -190,10 +174,7 @@ export const Door = ({ to, imageSrc, label, color, delay = 0 }: DoorProps) => {
         
         {/* Light effect behind the door */}
         <div 
-          className={cn(
-            "absolute inset-0 -z-10 rounded-xl transition-opacity duration-700",
-            isHovering || isOpening ? "opacity-70" : "opacity-0"
-          )}
+          className={`absolute inset-0 -z-10 rounded-xl transition-opacity duration-700 ${isHovering || isOpening ? "opacity-70" : "opacity-0"}`}
           style={{
             background: `radial-gradient(circle at center, ${color} 0%, transparent 70%)`,
             transform: 'translateY(10%) scale(1.1)',
