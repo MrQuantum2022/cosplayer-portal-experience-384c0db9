@@ -63,9 +63,7 @@ const Creature = () => {
               
               <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-teal-300 mb-6" />
               
-              <p className="text-lg text-emerald-100 mb-6 leading-relaxed">
-                This haunting creature cosplay pushes the boundaries of transformation with its otherworldly design and glowing red eyes. The teal robe creates an ethereal silhouette, while the intricate mask showcases exceptional prop-making skills and attention to detail.
-              </p>
+              <p className="text-lg text-emerald-100 mb-6 leading-relaxed">This solo levelling god's cosplay pushes the boundaries of transformation with its otherworldly design and glowing red eyes. The teal robe creates an ethereal silhouette, while the intricate mask showcases exceptional prop-making skills and attention to detail.</p>
               
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
