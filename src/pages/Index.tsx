@@ -67,6 +67,7 @@ const Index = () => {
           label="Water Breather" 
           color="#0096C7"
           delay={600}
+          externalLink="https://mrquantum2022.github.io/black-myth-cosplay-portal/"
         />
         
         <Door 
@@ -75,6 +76,7 @@ const Index = () => {
           label="Creature" 
           color="#2B9348"
           delay={900}
+          externalLink="https://mrquantum2022.github.io/black-myth-cosplay-portal/"
         />
       </main>
       
