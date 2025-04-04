@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ParticleEffect } from './ParticleEffect';
@@ -10,9 +9,10 @@ interface DoorProps {
   label: string;
   color: string;
   delay?: number;
+  externalLink?: string;
 }
 
-export const Door = ({ to, imageSrc, label, color, delay = 0 }: DoorProps) => {
+export const Door = ({ to, imageSrc, label, color, delay = 0, externalLink }: DoorProps) => {
   const [isHovering, setIsHovering] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -40,7 +40,15 @@ export const Door = ({ to, imageSrc, label, color, delay = 0 }: DoorProps) => {
     setIsOpening(true);
     toast(`Entering ${label} world...`);
     
-    // Delay navigation to allow door animation to complete
+    // If we have an external link, navigate to it
+    if (externalLink) {
+      setTimeout(() => {
+        window.location.href = externalLink;
+      }, 1500);
+      return;
+    }
+    
+    // Otherwise navigate internally
     setTimeout(() => {
       navigate(to);
     }, 1500);
