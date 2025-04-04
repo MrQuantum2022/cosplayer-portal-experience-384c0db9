@@ -9,6 +9,14 @@ const WaterBreather = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const navigate = useNavigate();
   
+  // Function to ensure image paths work correctly on GitHub Pages
+  const getCorrectImagePath = (path: string) => {
+    if (path.startsWith('/')) {
+      return `.${path}`;
+    }
+    return path;
+  };
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoaded(true);
@@ -19,7 +27,7 @@ const WaterBreather = () => {
   return (
     <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-blue-900 via-cyan-800 to-blue-950 text-white">
       {/* Water-like background */}
-      <div className="absolute inset-0 bg-[url('public/lovable-uploads/cd0c72d4-8a0a-4ab0-b0ae-41cfb317bde5.png')] bg-cover bg-center opacity-10" />
+      <div className="absolute inset-0 bg-[url('./lovable-uploads/cd0c72d4-8a0a-4ab0-b0ae-41cfb317bde5.png')] bg-cover bg-center opacity-10" />
 
       {/* Blue particle effects */}
       <ParticleEffect color="rgba(56, 189, 248, 0.6)" count={35} />
@@ -56,7 +64,7 @@ const WaterBreather = () => {
             <div className="relative">
               <div className="absolute -inset-0.5 bg-cyan-500 blur-xl opacity-30 rounded-xl animate-pulse" />
               <div className="relative overflow-hidden rounded-xl border-2 border-cyan-500/50">
-                <img src="/lovable-uploads/a077f559-77fa-46dc-bf68-243b7b7b87f1.png" alt="Water Breather Cosplay" className="w-full h-auto object-cover aspect-[3/4] transform hover:scale-105 transition-transform duration-700" />
+                <img src={getCorrectImagePath("./lovable-uploads/a077f559-77fa-46dc-bf68-243b7b7b87f1.png")} alt="Water Breather Cosplay" className="w-full h-auto object-cover aspect-[3/4] transform hover:scale-105 transition-transform duration-700" />
               </div>
               
               {/* Decorative water elements */}

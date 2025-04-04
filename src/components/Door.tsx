@@ -18,6 +18,14 @@ export const Door = ({ to, imageSrc, label, color, delay = 0 }: DoorProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
 
+  // Ensure image path has the correct base path for GitHub Pages deployment
+  const getCorrectImagePath = (path: string) => {
+    if (path.startsWith('/')) {
+      return `.${path}`;
+    }
+    return path;
+  };
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
@@ -118,9 +126,9 @@ export const Door = ({ to, imageSrc, label, color, delay = 0 }: DoorProps) => {
           onClick={handleDoorClick}
         >
           <div className="aspect-[2/3] w-72 md:w-80 relative overflow-hidden cursor-pointer">
-            {/* Door image */}
+            {/* Door image with corrected path */}
             <img 
-              src={imageSrc} 
+              src={getCorrectImagePath(imageSrc)} 
               alt={`${label} door`}
               className="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-110"
             />

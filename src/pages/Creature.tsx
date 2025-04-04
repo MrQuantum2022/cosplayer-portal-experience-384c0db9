@@ -9,6 +9,14 @@ const Creature = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const navigate = useNavigate();
   
+  // Function to ensure image paths work correctly on GitHub Pages
+  const getCorrectImagePath = (path: string) => {
+    if (path.startsWith('/')) {
+      return `.${path}`;
+    }
+    return path;
+  };
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoaded(true);
@@ -19,7 +27,7 @@ const Creature = () => {
   return (
     <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-emerald-900 via-teal-800 to-green-950 text-white">
       {/* Textured background */}
-      <div className="absolute inset-0 bg-[url('public/lovable-uploads/134ff52d-4fb3-4954-9bff-399a8141faa3.png')] bg-cover bg-center opacity-5" />
+      <div className="absolute inset-0 bg-[url('./lovable-uploads/134ff52d-4fb3-4954-9bff-399a8141faa3.png')] bg-cover bg-center opacity-5" />
 
       {/* Green particle effects */}
       <ParticleEffect color="rgba(16, 185, 129, 0.6)" count={25} />
@@ -51,7 +59,7 @@ const Creature = () => {
             <div className="relative">
               <div className="absolute -inset-0.5 bg-emerald-500 blur-xl opacity-30 rounded-xl animate-pulse" />
               <div className="relative overflow-hidden rounded-xl border-2 border-emerald-500/50">
-                <img src="/lovable-uploads/064364bd-a24d-4abf-8223-cc11c7c8eb4a.png" alt="Creature Cosplay" className="w-full h-auto object-cover aspect-[3/4] transform hover:scale-105 transition-transform duration-700" />
+                <img src={getCorrectImagePath("./lovable-uploads/064364bd-a24d-4abf-8223-cc11c7c8eb4a.png")} alt="Creature Cosplay" className="w-full h-auto object-cover aspect-[3/4] transform hover:scale-105 transition-transform duration-700" />
               </div>
               
               {/* Decorative elements */}

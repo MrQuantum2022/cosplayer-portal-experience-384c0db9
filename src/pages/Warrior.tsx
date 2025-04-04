@@ -9,6 +9,14 @@ const Warrior = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const navigate = useNavigate();
   
+  // Function to ensure image paths work correctly on GitHub Pages
+  const getCorrectImagePath = (path: string) => {
+    if (path.startsWith('/')) {
+      return `.${path}`;
+    }
+    return path;
+  };
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoaded(true);
@@ -19,7 +27,7 @@ const Warrior = () => {
   return (
     <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-red-900 via-red-800 to-red-950 text-white">
       {/* Background texture */}
-      <div className="absolute inset-0 bg-[url('public/lovable-uploads/d3dcf9d3-cc0b-47cf-ab94-19d186bbf69b.png')] bg-cover bg-center opacity-5" />
+      <div className="absolute inset-0 bg-[url('./lovable-uploads/d3dcf9d3-cc0b-47cf-ab94-19d186bbf69b.png')] bg-cover bg-center opacity-5" />
 
       {/* Red particle effects */}
       <ParticleEffect color="rgba(220, 38, 38, 0.6)" count={25} />
@@ -45,7 +53,7 @@ const Warrior = () => {
             <div className="relative">
               <div className="absolute -inset-0.5 bg-red-500 blur-xl opacity-30 rounded-xl animate-pulse" />
               <div className="relative overflow-hidden rounded-xl border-2 border-red-500/50">
-                <img src="/lovable-uploads/daf6d98a-de59-49b2-b06c-ee84b1687687.png" alt="Warrior Cosplay" className="w-full h-auto object-cover aspect-[3/4] transform hover:scale-105 transition-transform duration-700" />
+                <img src={getCorrectImagePath("./lovable-uploads/daf6d98a-de59-49b2-b06c-ee84b1687687.png")} alt="Warrior Cosplay" className="w-full h-auto object-cover aspect-[3/4] transform hover:scale-105 transition-transform duration-700" />
               </div>
               
               {/* Decorative elements */}
