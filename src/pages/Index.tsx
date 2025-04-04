@@ -58,7 +58,6 @@ const Index = () => {
           label="Warrior" 
           color="#D90429"
           delay={300}
-          externalLink="https://mrquantum2022.github.io/black-myth-cosplay-portal/"
         />
         
         <Door 
