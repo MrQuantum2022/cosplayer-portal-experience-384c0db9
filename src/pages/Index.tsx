@@ -61,7 +61,7 @@ const Index = () => {
         />
         
         <Door 
-          to="/MrQuantum2022/cosplayer-portal-experience-384c0db9/src/pages/WaterBreather.tsx" 
+          to="/creature" 
           imageSrc="./lovable-uploads/a077f559-77fa-46dc-bf68-243b7b7b87f1.png" 
           label="Tanjiro" 
           color="#0096C7"
