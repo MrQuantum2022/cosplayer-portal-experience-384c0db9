@@ -29,7 +29,7 @@ const Index = () => {
       {/* Background effects */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-blue-50 to-blue-100 dark:from-blue-950 dark:to-gray-900 transition-colors duration-700" />
       
-      <div className="absolute inset-0 -z-10 bg-[url('./lovable-uploads/07d1b47a-163a-41fd-bdbc-d014f93a7f5c.png')] bg-cover bg-center opacity-10 dark:opacity-5" />
+      <div className="absolute inset-0 -z-10 bg-[url('./lovable-uploads/254a129d-44db-43fb-8e1a-20ef56e8b35a.png')] bg-cover bg-center opacity-10 dark:opacity-5" />
       
       {/* Floating particles */}
       <ParticleEffect count={30} color="rgba(59, 130, 246, 0.5)" />
@@ -61,7 +61,7 @@ const Index = () => {
         />
         
         <Door 
-          to="/WaterBreather" 
+          to="/MrQuantum2022/cosplayer-portal-experience-384c0db9/src/pages/WaterBreather.tsx" 
           imageSrc="./lovable-uploads/a077f559-77fa-46dc-bf68-243b7b7b87f1.png" 
           label="Tanjiro" 
           color="#0096C7"
