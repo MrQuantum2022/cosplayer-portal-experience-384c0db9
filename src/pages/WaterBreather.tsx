@@ -103,8 +103,12 @@ const WaterBreather = () => {
               </div>
               
               <div className="mt-8 flex gap-4">
+                <a href="https://tanjiro-cosplay-canvas.lovable.app/">
                 <button className="bg-cyan-600 hover:bg-cyan-700 px-4 py-2 rounded">View Gallery</button>
+                </a >
+                <a href="https://tanjiro-cosplay-canvas.lovable.app/">
                 <button className="border border-cyan-500 text-cyan-100 hover:bg-blue-800/30 px-4 py-2 rounded">Making Process</button>
+                </a>
               </div>
             </div>
           </div>
