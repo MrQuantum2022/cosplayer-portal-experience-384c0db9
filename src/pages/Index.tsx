@@ -61,7 +61,7 @@ const Index = () => {
         />
         
         <Door 
-          to="/WaterBreather" 
+          to="/WaterBreather.tsx" 
           imageSrc="./lovable-uploads/a077f559-77fa-46dc-bf68-243b7b7b87f1.png" 
           label="Tanjiro" 
           color="#0096C7"
