@@ -23,11 +23,6 @@ const Warrior = () => {
     }, 500);
     return () => clearTimeout(timer);
   }, []);
-
-  // Function to handle external links
-  const handleExternalLink = (url: string) => {
-    window.location.href = url;
-  };
   
   return (
     <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-red-900 via-red-800 to-red-950 text-white">
@@ -96,11 +91,7 @@ const Warrior = () => {
               
               <div className="mt-8 flex gap-4">
                 <button className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded">View Gallery</button>
-                <button 
-                  onClick={() => handleExternalLink("https://mrquantum2022.github.io/black-myth-cosplay-portal/")}
-                  className="border border-red-500 text-red-100 hover:bg-red-800/30 px-4 py-2 rounded">
-                  Making Process
-                </button>
+                <button className="border border-red-500 text-red-100 hover:bg-red-800/30 px-4 py-2 rounded">Making Process</button>
               </div>
             </div>
           </div>
