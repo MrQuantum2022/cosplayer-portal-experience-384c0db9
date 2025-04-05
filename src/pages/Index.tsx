@@ -53,17 +53,17 @@ const Index = () => {
       {/* Portal doors section */}
       <main className="flex flex-col md:flex-row items-center justify-center gap-16 md:gap-20 lg:gap-24 px-8 mb-16">
         <Door 
-          to="/Sun Wukong" 
+          to="/Warrior" 
           imageSrc="./lovable-uploads/daf6d98a-de59-49b2-b06c-ee84b1687687.png" 
-          label="Warrior" 
+          label="Sun Wukong" 
           color="#D90429"
           delay={300}
         />
         
         <Door 
-          to="/Tanjiro" 
+          to="/WaterBreather" 
           imageSrc="./lovable-uploads/a077f559-77fa-46dc-bf68-243b7b7b87f1.png" 
-          label="Water Breather" 
+          label="Tanjiro" 
           color="#0096C7"
           delay={600}
         />
