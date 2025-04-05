@@ -96,8 +96,12 @@ const Creature = () => {
               </div>
               
               <div className="mt-8 flex gap-4">
+                <a href="https://mrquantum2022.github.io/statue-of-god-landing-a6e8c441/">
                 <button className="bg-emerald-600 hover:bg-emerald-700 px-4 py-2 rounded">View Gallery</button>
+                </a>
+                <a href="https://mrquantum2022.github.io/statue-of-god-landing-a6e8c441/">
                 <button className="border border-emerald-500 text-emerald-100 hover:bg-green-800/30 px-4 py-2 rounded">Making Process</button>
+                </a>
               </div>
             </div>
           </div>
