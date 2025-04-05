@@ -53,7 +53,7 @@ const Index = () => {
       {/* Portal doors section */}
       <main className="flex flex-col md:flex-row items-center justify-center gap-16 md:gap-20 lg:gap-24 px-8 mb-16">
         <Door 
-          to="/warrior" 
+          to="/Sun Wukong" 
           imageSrc="./lovable-uploads/daf6d98a-de59-49b2-b06c-ee84b1687687.png" 
           label="Warrior" 
           color="#D90429"
@@ -61,7 +61,7 @@ const Index = () => {
         />
         
         <Door 
-          to="/water-breather" 
+          to="/Tanjiro" 
           imageSrc="./lovable-uploads/a077f559-77fa-46dc-bf68-243b7b7b87f1.png" 
           label="Water Breather" 
           color="#0096C7"
@@ -71,7 +71,7 @@ const Index = () => {
         <Door 
           to="/creature" 
           imageSrc="./lovable-uploads/064364bd-a24d-4abf-8223-cc11c7c8eb4a.png" 
-          label="Creature" 
+          label="Statue of God" 
           color="#2B9348"
           delay={900}
         />
@@ -80,7 +80,7 @@ const Index = () => {
       {/* Instructions */}
       <div className={`max-w-md mx-auto text-center text-gray-500 dark:text-gray-400 transition-all duration-1000 ease-out px-4 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`} style={{ transitionDelay: '700ms' }}>
         <p className="text-sm">
-          Click on a door to enter the world of each cosplay. Inspired by Suzume no Tojimari.
+          Click on a door to enter the world of each cosplay.
         </p>
       </div>
       
